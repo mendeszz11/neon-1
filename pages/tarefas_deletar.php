@@ -4,28 +4,28 @@
 
     
     if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-        echo '<p style="color: red; text-align: center;">ID de tarefa inválido.</p>';
-        echo '<p style="text-align: center;"><a href="/">Voltar para a lista de tarefas</a></p>';
+        echo '<p style="color: red; text-align: center;">ID de show inválido.</p>';
+        echo '<p style="text-align: center;"><a href="/">Voltar para a lista de shows</a></p>';
         exit;
     } 
 
 
     $id = $_GET['id'];
 
-    $tarefa = new Tarefas($conn);
-    $tarefa_atual = $tarefa->consultarPorId( $id);
+    $showObj = new Tarefas($conn);
+    $show_atual = $showObj->consultarPorId( $id);
 
-    if (!$tarefa_atual) {
-        echo '<p style="color: red; text-align: center;">Tarefa não encontrada.</p>';
-        echo '<p style="text-align: center;"><a href="/">Voltar para a lista de tarefas</a></p>';
+    if (!$show_atual) {
+        echo '<p style="color: red; text-align: center;">Show não encontrado.</p>';
+        echo '<p style="text-align: center;"><a href="/">Voltar para a lista de shows</a></p>';
         exit;
     }
 
-    $resultado = $tarefa->deletar($id);
+    $resultado = $showObj->deletar($id);
 
     if ($resultado) {               
         header('Location: /?deleted=true');
     } else {
-        echo '<p style="color: red; text-align: center;">Erro ao deletar tarefa. Tente novamente.</p>';
-         echo '<p style="text-align: center;"><a href="/">Voltar para a lista de tarefas</a></p>';
+        echo '<p style="color: red; text-align: center;">Erro ao deletar show. Tente novamente.</p>';
+         echo '<p style="text-align: center;"><a href="/">Voltar para a lista de shows</a></p>';
     }

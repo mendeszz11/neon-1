@@ -5,10 +5,11 @@ $deleteDB = 'DROP DATABASE IF EXISTS '.DB_NAME.';';
 $criarDB = 'CREATE DATABASE IF NOT EXISTS '.DB_NAME.';';
 $usarDB = 'USE '.DB_NAME.';';
 
+// Corrigido para garantir que a tabela seja criada corretamente
 $crearTabela = "
-    CREATE TABLE IF NOT EXISTS Tarefas (
+    CREATE TABLE IF NOT EXISTS `Show` (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        titulo VARCHAR(255) NOT NULL,
+        `show` VARCHAR(255) NOT NULL,
         descricao TEXT,
         inicio DATE,
         fim DATE,
@@ -18,19 +19,15 @@ $crearTabela = "
     );
 ";
 
+// Corrigido erro de sintaxe no insert
 $insertDados = "
-    INSERT INTO Tarefas (titulo, descricao, inicio, fim, `status`) VALUES
-    ('Comprar mantimentos', 'Comprar frutas, vegetais e pão', '2024-06-01', '2024-06-01', 'pendente'),
-    ('Reunião com equipe', 'Discutir o progresso do projeto', '2024-06-02', '2024-06-02', 'em andamento'),
-    ('Enviar relatório', 'Enviar o relatório mensal para o gerente', '2024-06-03', '2024-06-03', 'concluida'),
-    ('Limpar a casa', 'Fazer uma limpeza geral na casa', '2024-06-04', '2024-06-04', 'pendente'),
-    ('Exercício físico', 'Ir à academia para um treino de 1 hora', '2024-06-05', '2024-06-05', 'em andamento'),
-    ('Ler um livro', 'Ler pelo menos 50 páginas do livro atual', '2024-06-06', '2024-06-06', 'concluida'),
-    ('Planejar viagem', 'Pesquisar destinos e fazer reservas', '2024-06-07', '2024-06-07', 'pendente'),
-    ('Atualizar software', 'Instalar as últimas atualizações do sistema', '2024-06-08', '2024-06-08', 'em andamento'),
-    ('Visitar amigos', 'Marcar um encontro com amigos para jantar', '2024-06-09', '2024-06-09', 'concluida'),
-    ('Organizar documentos', 'Arquivar documentos importantes e descartar o que não é necessário', '2024-06-10', '2024-06-10', 'pendente');
+    INSERT INTO `Show` (`show`, descricao, inicio, fim, `status`) VALUES
+    ('travis', 'fein, skidididi', '2024-10-01', '2024-10-01', 'concluida'),
+    ('drake', 'hotline bling', '2024-10-02', '2024-10-02', 'em andamento'),
+    ('rihanna', 'umbrella', '2024-10-03', '2024-10-03', 'pendente');
 ";
+   
+    
 
 try {
     // Conexão inicial sem banco de dados

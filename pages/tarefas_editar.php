@@ -4,20 +4,20 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $_POST['id'];
-        $titulo = $_POST['titulo'] ?? '';
+        $show = $_POST['show'] ?? '';
         $descricao = $_POST['descricao'] ?? '';
         $inicio = $_POST['inicio'] ?? '';
         $fim = $_POST['fim'] ?? '';
         $status = $_POST['status'] ?? '';
 
-        $tarefa = new Tarefas($conn);
-        $tarefa->id = $id;
-        $tarefa->titulo = $titulo;
-        $tarefa->descricao = trim($descricao);
-        $tarefa->inicio = $inicio;
-        $tarefa->fim = $fim;
-        $tarefa->status = $status;
-        $resultado = $tarefa->editar();
+        $showObj = new Tarefas($conn);
+        $showObj->id = $id;
+        $showObj->show = $show;
+        $showObj->descricao = trim($descricao);
+        $showObj->inicio = $inicio;
+        $showObj->fim = $fim;
+        $showObj->status = $status;
+        $resultado = $showObj->editar();
     }
 
     if(!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -41,12 +41,12 @@
 ?>
     
     <div class="form-container">
-        <h1>Cadastrar Nova Tarefa</h1>
+        <h1>Editar Show</h1>
         <form action="" method="post">
             <input type="hidden" name="id" value="<?php echo htmlspecialchars($tarefa_atual['id']); ?>">
             <div class="form-group">
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" value="<?php echo htmlspecialchars($tarefa_atual['titulo']) ?>" required>
+                <label for="show">Show:</label>
+                <input type="text" id="show" name="show" value="<?php echo htmlspecialchars($tarefa_atual['show']) ?>" required>
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição:</label>
@@ -69,14 +69,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit">Editar Tarefa</button>
+                <button type="submit">Editar Show</button>
             </div>
             <?php
             if (isset($resultado)) {
                 if ($resultado) {
-                    echo '<p style="color: green; text-align: center;">Tarefa alterada com sucesso!</p>';
+                    echo '<p style="color: green; text-align: center;">Show alterado com sucesso!</p>';
                 } else {
-                    echo '<p style="color: red; text-align: center;">Erro ao alterar tarefa. Tente novamente.</p>';
+                    echo '<p style="color: red; text-align: center;">Erro ao alterar show. Tente novamente.</p>';
                 }
             }  
             ?>

@@ -13,9 +13,9 @@
 </script>
 </head>
 <body>
-    <nav style="width: 100%; justify-content: center; background: #f0f0f0; padding: 10px 0; box-sizing: border-box; display: flex; gap: 20px;">
-        <a href="?page=cadastrar" style="text-decoration: none; color: #333; font-weight: bold;">Cadastrar nova tarefa</a>
-        <a href="?page=listar" style="text-decoration: none; color: #333; font-weight: bold;">Listar tarefas</a>
+    <nav class="neon-nav">
+        <a href="?page=cadastrar" class="neon-btn">Cadastrar novo show</a>
+        <a href="?page=listar" class="neon-btn">Listar shows</a>
     </nav>
     <div id="container" style="height: calc(98vh - 50px); overflow-y: auto; padding: 20px; box-sizing: border-box;">
         <?php

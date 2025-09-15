@@ -3,7 +3,7 @@ class Tarefas
 {
     // Atributos correspondentes à tabela de tarefas
     public $id;
-    public $titulo;
+    public $show;
     public $descricao;
     public $inicio;
     public $fim;
@@ -20,9 +20,9 @@ class Tarefas
     public function cadastrar(): bool
     {
         try {
-            $sql = "INSERT INTO tarefas (`titulo`, `descricao`, `inicio`, `fim`, `status`) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `Show` (`show`, `descricao`, `inicio`, `fim`, `status`) VALUES (?, ?, ?, ?, ?)";
             $dados = [
-                $this->titulo,
+                $this->show,
                 $this->descricao,
                 $this->inicio,
                 $this->fim,
@@ -33,8 +33,8 @@ class Tarefas
             return ($stmt->rowCount() > 0); 
         } catch (PDOException $e) {
             // Tratar erro de banco de dados
-            error_log("Erro ao cadastrar tarefa: " . $e->getMessage());
-            throw new Exception(message: "Erro ao cadastrar tarefa: " . $e->getMessage());
+            error_log("Erro ao cadastrar show: " . $e->getMessage());
+            throw new Exception(message: "Erro ao cadastrar show: " . $e->getMessage());
         }
     }
 
@@ -43,20 +43,20 @@ class Tarefas
     {
         try {            
             if ($search) {
-                $sql = "SELECT * FROM tarefas WHERE titulo LIKE ? OR descricao LIKE ?";
+                    $sql = "SELECT * FROM `Show` WHERE `show` LIKE ? OR descricao LIKE ?";
                 $search = trim(string: $search);
                 $search = "%{$search}%";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->execute([$search, $search]);
             } else {
-                $sql = "SELECT * FROM tarefas";
+                $sql = "SELECT * FROM `Show`";
                 $stmt = $this->conn->query($sql);
             }
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             // Tratar erro de banco de dados
-            error_log("Erro ao consultar tarefas: " . $e->getMessage());
-            throw new Exception(message: "Erro ao consultar tarefas: " . $e->getMessage());
+            error_log("Erro ao consultar shows: " . $e->getMessage());
+            throw new Exception(message: "Erro ao consultar shows: " . $e->getMessage());
         }
     }
 
@@ -64,14 +64,14 @@ class Tarefas
     public function consultarPorId($id)
     {
         try {
-            $sql = "SELECT * FROM tarefas WHERE id = ?";
+            $sql = "SELECT * FROM `Show` WHERE id = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             // Tratar erro de banco de dados
-            error_log("Erro ao consultar tarefa por ID: " . $e->getMessage());
-            throw new Exception(message: "Erro ao consultar tarefa por ID: " . $e->getMessage());
+            error_log("Erro ao consultar show por ID: " . $e->getMessage());
+            throw new Exception(message: "Erro ao consultar show por ID: " . $e->getMessage());
         }
     }
 
@@ -79,9 +79,9 @@ class Tarefas
     public function editar()
     {
         try {
-            $sql = "UPDATE tarefas SET titulo = ?, descricao = ?, inicio = ?, fim = ?, status = ? WHERE id = ?";
+            $sql = "UPDATE `Show` SET `show` = ?, descricao = ?, inicio = ?, fim = ?, status = ? WHERE id = ?";
             $dados = [
-                $this->titulo,
+                $this->show,
                 $this->descricao,
                 $this->inicio,
                 $this->fim,
@@ -93,8 +93,8 @@ class Tarefas
             return ($stmt->rowCount() > 0); 
         } catch (PDOException $e) {
             // Tratar erro de banco de dados
-            error_log("Erro ao alterar tarefa: " . $e->getMessage());
-            throw new Exception(message: "Erro ao alterar tarefa: " . $e->getMessage());
+            error_log("Erro ao alterar show: " . $e->getMessage());
+            throw new Exception(message: "Erro ao alterar show: " . $e->getMessage());
         }
     }
 
@@ -102,14 +102,14 @@ class Tarefas
     public function deletar($id): bool
     {
         try {
-            $sql = "DELETE FROM tarefas WHERE id = ?";
+            $sql = "DELETE FROM `Show` WHERE id = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$id]);
             return ($stmt->rowCount() > 0); 
         } catch (PDOException $e) {
             // Tratar erro de banco de dados
-            error_log("Erro ao deletar tarefa: " . $e->getMessage());
-            throw new Exception(message: "Erro ao deletar tarefa: " . $e->getMessage());
+            error_log("Erro ao deletar show: " . $e->getMessage());
+            throw new Exception(message: "Erro ao deletar show: " . $e->getMessage());
         }
     }
 }

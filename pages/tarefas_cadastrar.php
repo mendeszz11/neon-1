@@ -4,27 +4,27 @@
     require_once __DIR__ . '/../model/Tarefas.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $titulo = $_POST['titulo'] ?? '';
+        $show = $_POST['show'] ?? '';
         $descricao = $_POST['descricao'] ?? '';
         $inicio = $_POST['inicio'] ?? '';
         $fim = $_POST['fim'] ?? '';
         $status = $_POST['status'] ?? '';
 
-        $tarefa = new Tarefas($conn);
-        $tarefa->titulo = $titulo;
-        $tarefa->descricao = $descricao;
-        $tarefa->inicio = $inicio;
-        $tarefa->fim = $fim;
-        $tarefa->status = $status;
-        $resultado = $tarefa->cadastrar();
+        $showObj = new Tarefas($conn);
+        $showObj->show = $show;
+        $showObj->descricao = $descricao;
+        $showObj->inicio = $inicio;
+        $showObj->fim = $fim;
+        $showObj->status = $status;
+        $resultado = $showObj->cadastrar();
     }
 ?>
     <div class="form-container">
-        <h1>Cadastrar Nova Tarefa</h1>
+        <h1>Cadastrar Novo Show</h1>
         <form action="" method="post">
             <div class="form-group">
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
+                <label for="show">Show:</label>
+                <input type="text" id="show" name="show" required>
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição:</label>
@@ -47,14 +47,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit">Cadastrar Tarefa</button>
+                <button type="submit">Cadastrar Show</button>
             </div>
             <?php
             if (isset($resultado)) {
                 if ($resultado) {
-                    echo '<p style="color: green; text-align: center;">Tarefa cadastrada com sucesso!</p>';
+                    echo '<p style="color: green; text-align: center;">Show cadastrado com sucesso!</p>';
                 } else {
-                    echo '<p style="color: red; text-align: center;">Erro ao cadastrar tarefa. Tente novamente.</p>';
+                    echo '<p style="color: red; text-align: center;">Erro ao cadastrar show. Tente novamente.</p>';
                 }
             }  
             ?>
