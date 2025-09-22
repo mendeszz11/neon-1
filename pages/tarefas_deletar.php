@@ -23,9 +23,10 @@
 
     $resultado = $showObj->deletar($id);
 
-    if ($resultado) {               
-        header('Location: /?deleted=true');
+    if ($resultado) {
+        echo '<p style="color: green; text-align: center;">Show deletado com sucesso.</p>';
+        echo '<p style="text-align: center;"><a href="/">Voltar para a lista de shows</a></p>';
     } else {
         echo '<p style="color: red; text-align: center;">Erro ao deletar show. Tente novamente.</p>';
-         echo '<p style="text-align: center;"><a href="/">Voltar para a lista de shows</a></p>';
+        echo '<p style="text-align: center;"><a href="/">Voltar para a lista de shows</a></p>';
     }
